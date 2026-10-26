@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIC System - Nidaamka Kaarka Aqoonsiga Qaranka Soomaaliyeed</title>
+    <meta name="description" content="Nidaamka Rasmiga ah ee Kaarka Aqoonsiga Qaranka Jamhuuriyadda Federaalka Soomaaliya (Somalia National ID Card System).">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0052cc;
+            --primary-dark: #003d99;
+            --primary-light: #2684ff;
+            --secondary: #00a3bf;
+            --somali-blue: #4189e8;
+            --somali-sky: #e6f0ff;
+            --accent-gold: #f59e0b;
+            --dark-bg: #09132b;
+            --darker-bg: #050b1a;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --border: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px -3px rgba(0, 82, 204, 0.1);
+            --shadow-lg: 0 20px 40px -5px rgba(0, 82, 204, 0.18);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fbff;
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Government Bar */
+        .top-gov-bar {
+            background: var(--darker-bg);
+            color: #cbd5e1;
+            font-size: 13px;
+            padding: 8px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-gov-bar .gov-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-gov-bar .star-badge {
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .top-gov-bar .gov-contact {
+            display: flex;
+            gap: 20px;
+        }
+
+        .top-gov-bar a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .top-gov-bar a:hover {
+            color: #ffffff;
+        }
+
+        /* Main Navigation */
+        header.site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 82, 204, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .brand-logo-wrap {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--somali-blue), #003999);
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .brand-logo-wrap img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-text .title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--dark-bg);
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+
+        .brand-text .subtitle {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 28px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-login-header {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--primary) 0%, #0040b3 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0, 82, 204, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .btn-login-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 82, 204, 0.45);
+            color: #ffffff;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark-bg);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: radial-gradient(circle at 85% 20%, rgba(38, 132, 255, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 10% 80%, rgba(0, 82, 204, 0.08) 0%, transparent 35%),
+                        #f8fbff;
+            padding: 70px 24px 100px;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge-official {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 82, 204, 0.08);
+            border: 1px solid rgba(0, 82, 204, 0.2);
+            color: var(--primary);
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-official i {
+            color: var(--accent-gold);
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.15;
+            color: var(--dark-bg);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 15px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0, 82, 204, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 82, 204, 0.45);
+            color: #ffffff;
+        }
+
+        .btn-hero-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #ffffff;
+            color: var(--dark-bg);
+            font-size: 16px;
+            font-weight: 700;
+            padding: 15px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 2px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .btn-hero-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .trust-pills {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(0, 82, 204, 0.1);
+            padding-top: 24px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .trust-item i {
+            color: #10b981;
+            font-size: 16px;
+        }
+
+        /* 3D Realistic National ID Card Mockup */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .card-glow-bg {
+            position: absolute;
+            width: 380px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(0, 82, 204, 0.35) 0%, rgba(56, 189, 248, 0) 70%);
+            filter: blur(40px);
+            z-index: 1;
+        }
+
+        .id-card-3d {
+            position: relative;
+            z-index: 2;
+            width: 440px;
+            max-width: 100%;
+            height: 275px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 60%, #e2efff 100%);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 25px 50px -12px rgba(0, 48, 130, 0.35),
+                        0 0 0 1px rgba(0, 82, 204, 0.15);
+            padding: 16px 20px;
+            color: #0f172a;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .id-card-3d:hover {
+            transform: translateY(-8px) rotate(-1deg) scale(1.02);
+        }
+
+        /* Card background watermark */
+        .id-card-3d::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 260px;
+            height: 260px;
+            background-image: url('logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.07;
+            pointer-events: none;
+        }
+
+        /* Card Header */
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #0052cc;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .card-gov-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .card-gov-title h4 {
+            font-size: 11px;
+            font-weight: 800;
+            color: #003399;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1.1;
+        }
+
+        .card-gov-title p {
+            font-size: 9px;
+            color: #475569;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .card-emblem-left {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+
+        .card-emblem-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .somali-flag-small {
+            width: 36px;
+            height: 24px;
+            background: #4189e8;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+            flex-shrink: 0;
+        }
+
+        /* Card Body */
+        .card-main {
+            display: grid;
+            grid-template-columns: 82px 1fr 65px;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .card-avatar {
+            width: 82px;
+            height: 102px;
+            background: #e2e8f0;
+            border-radius: 8px;
+            border: 2px solid #0052cc;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            position: relative;
+        }
+
+        .card-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-chip {
+            width: 32px;
+            height: 24px;
+            background: linear-gradient(135deg, #e5b95f 0%, #fef3c7 50%, #d97706 100%);
+            border-radius: 4px;
+            border: 1px solid #b45309;
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .card-chip::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+
+        .card-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-field .lbl {
+            font-size: 8px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .card-field .val {
+            font-size: 11px;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .card-field .val.nic-mono {
+            font-family: 'JetBrains Mono', monospace;
+            color: #0052cc;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .card-details-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .card-right-codes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            gap: 8px;
+        }
+
+        .qr-mock {
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-mock i {
+            font-size: 46px;
+            color: #0f172a;
+        }
+
+        .hologram-seal {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6ee7b7, #3b82f6, #f472b6);
+            opacity: 0.85;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 14px;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+            animation: holoPulse 4s infinite alternate;
+        }
+
+        @keyframes holoPulse {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(90deg); }
+        }
+
+        .card-bottom-strip {
+            margin-top: 10px;
+            padding-top: 6px;
+            border-top: 1px dashed #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* VERIFICATION TOOL SECTION */
+        .section-verify {
+            padding: 90px 24px;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 50px;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--dark-bg);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .verify-box-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            background: #f8fbff;
+            border: 2px solid #e0ecff;
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .verify-box-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--somali-blue), var(--primary));
+            border-radius: 0 0 6px 6px;
+        }
+
+        .verify-form {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .verify-input-wrap {
+            position: relative;
+            flex-grow: 1;
+        }
+
+        .verify-input-wrap i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 18px;
+        }
+
+        .verify-input {
+            width: 100%;
+            padding: 16px 20px 16px 52px;
+            font-size: 16px;
+            font-family: 'JetBrains Mono', 'Plus Jakarta Sans', monospace;
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.25s ease;
+            background: #ffffff;
+            color: var(--dark-bg);
+            font-weight: 600;
+        }
+
+        .verify-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 82, 204, 0.12);
+        }
+
+        .btn-verify {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 18px rgba(0, 82, 204, 0.3);
+            white-space: nowrap;
+        }
+
+        .btn-verify:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+        }
+
+        .btn-verify:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .verify-hints {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+            padding: 0 4px;
+        }
+
+        /* Result container */
+        #verifyResult {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .result-card-verified {
+            background: #ffffff;
+            border: 2px solid #10b981;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.12);
+            animation: slideDown 0.35s ease;
+        }
+
+        .result-card-notfound {
+            background: #fff5f5;
+            border: 2px solid #ef4444;
+            border-radius: 16px;
+            padding: 24px;
+            color: #b91c1c;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.08);
+            animation: slideDown 0.35s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .res-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+        }
+
+        .verified-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #dcfce7;
+            color: #15803d;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .res-grid {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .res-photo {
+            width: 100px;
+            height: 120px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            border: 2px solid #cbd5e1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .res-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .res-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .res-field label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .res-field p {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--dark-bg);
+        }
+
+        /* STATS COUNTER BAR */
+        .stats-section {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            color: #ffffff;
+            padding: 60px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stats-grid {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 15px;
+        }
+
+        .stat-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .stat-num span.accent {
+            color: var(--somali-blue);
+        }
+
+        .stat-lbl {
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        /* PILLARS / FEATURES SECTION */
+        .section-features {
+            padding: 100px 24px;
+            background: #f8fbff;
+        }
+
+        .features-grid {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 82, 204, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 34px 26px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 82, 204, 0.25);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon-wrap {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.1) 0%, rgba(38, 132, 255, 0.15) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            color: var(--primary);
+            font-size: 26px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon-wrap {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            transform: scale(1.08);
+        }
+
+        .feature-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--dark-bg);
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* STEPS SECTION */
+        .section-steps {
+            padding: 90px 24px;
+            background: #ffffff;
+        }
+
+        .steps-wrapper {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+
+        .step-item {
+            position: relative;
+            padding: 24px;
+            background: #f8fbff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .step-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, #003399 100%);
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
+        }
+
+        .step-item h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--dark-bg);
+            margin-bottom: 8px;
+        }
+
+        .step-item p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* FAQ SECTION */
+        .section-faq {
+            padding: 90px 24px;
+            background: #f8fbff;
+        }
+
+        .faq-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--dark-bg);
+        }
+
+        .faq-question i {
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 24px 20px;
+            display: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* BANNER CTA */
+        .cta-banner {
+            max-width: 1240px;
+            margin: 0 auto 90px;
+            padding: 0 24px;
+        }
+
+        .cta-banner-inner {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, #003399 100%);
+            border-radius: var(--radius-xl);
+            padding: 60px 48px;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-banner-inner::before {
+            content: '';
+            position: absolute;
+            right: -80px;
+            bottom: -80px;
+            width: 320px;
+            height: 320px;
+            background: url('logo.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .cta-text h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .cta-text p {
+            color: #cbd5e1;
+            font-size: 16px;
+            max-width: 580px;
+        }
+
+        .btn-cta-admin {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #ffffff;
+            color: #003399;
+            font-weight: 800;
+            font-size: 16px;
+            padding: 16px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta-admin:hover {
+            transform: translateY(-3px);
+            background: #f0f7ff;
+            color: var(--primary);
+        }
+
+        /* FOOTER */
+        footer.site-footer {
+            background: var(--darker-bg);
+            color: #94a3b8;
+            padding: 70px 24px 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-grid {
+            max-width: 1240px;
+            margin: 0 auto 50px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-brand .f-brand-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-brand .f-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 82, 204, 0.4);
+        }
+
+        .footer-brand .f-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .footer-brand h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #94a3b8;
+        }
+
+        .footer-col h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom .copy-text {
+            color: #64748b;
+        }
+
+        .footer-bottom .copy-text span {
+            color: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-title {
+                font-size: 38px;
+            }
+            .hero-desc {
+                margin: 0 auto 30px;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .trust-pills {
+                justify-content: center;
+            }
+            .features-grid, .steps-wrapper {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-gov-bar {
+                display: none;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .nav-menu.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #ffffff;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                border-top: 1px solid #e2e8f0;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .features-grid, .steps-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .verify-form {
+                flex-direction: column;
+            }
+            .btn-verify {
+                width: 100%;
+                justify-content: center;
+            }
+            .res-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .res-photo {
+                margin: 0 auto;
+            }
+            .res-details {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Official Banner -->
+    <div class="top-gov-bar">
+        <div class="gov-info">
+            <span class="star-badge"><i class="fas fa-star" style="color:#f59e0b;"></i></span>
+            <span>Jamhuuriyadda Federaalka Soomaaliya &bull; Hey'adda Diiwaangelinta & Aqoonsiga Qaranka (NIC)</span>
+        </div>
+        <div class="gov-contact">
+            <span><i class="fas fa-phone-alt"></i> Qadka Caawinta: <strong>1024</strong></span>
+            <span><i class="fas fa-envelope"></i> info@nic.gov.so</span>
+        </div>
+    </div>
+
+    <!-- Main Header & Navbar -->
+    <header class="site-header">
+        <div class="navbar">
+            <a href="index.html" class="brand-container">
+                <div class="brand-logo-wrap">
+                    <img src="logo.png" alt="Somalia National ID Card Logo">
+                </div>
+                <div class="brand-text">
+                    <span class="title">NIC System</span>
+                    <span class="subtitle">Jamhuuriyadda Federaalka</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links - NO Sign Up Link As Requested -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero">Hoyga</a></li>
+                <li><a href="#about">Ku Saabsan</a></li>
+                <li><a href="#services">Adeegyada</a></li>
+                <li><a href="#verify">Hubi Kaarka</a></li>
+                <li><a href="#steps">Sida Loo Helo</a></li>
+                <li><a href="#faq">Su'aalaha</a></li>
+            </ul>
+
+            <!-- Header Action Button (Login Only) -->
+            <div class="nav-actions">
+                <a href="login.php" class="btn-login-header">
+                    <i class="fas fa-user-shield"></i> Gal Nidaamka
+                </a>
+                <button class="mobile-toggle" id="mobileToggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <!-- Left Info -->
+            <div class="hero-content">
+                <div class="badge-official">
+                    <i class="fas fa-shield-alt"></i> Nidaamka Rasmiga ah ee Aqoonsiga Qaranka
+                </div>
+                <h1 class="hero-title">
+                    Aqoonsigaaga Waa <span class="gradient-text">Sharaftaada</span> & Xuquuqdaada Muwaadinnimo
+                </h1>
+                <p class="hero-desc">
+                    Ku soo dhawoow Nidaamka Rasmiga ah ee Kaarka Aqoonsiga Qaranka Jamhuuriyadda Federaalka Soomaaliya (Somalia National ID Card). Kaar casri ah oo xogtaada bayoolajiga ku xaqiijinaya si degdeg ah oo sugan.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#verify" class="btn-hero-primary">
+                        <i class="fas fa-search"></i> Hubi Kaarkaaga Hadda
+                    </a>
+                    <a href="login.php" class="btn-hero-secondary">
+                        <i class="fas fa-lock"></i> Qeybta Maamulka (Login)
+                    </a>
+                </div>
+
+                <div class="trust-pills">
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i> Xog Biometric Sugan
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i> Xaqiijin Online & QR Code
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i> Heer Caalami ah
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right 3D Visual ID Card Preview -->
+            <div class="hero-visual">
+                <div class="card-glow-bg"></div>
+
+                <!-- National ID Card Mockup with Official Logo -->
+                <div class="id-card-3d" id="nationalIdCard" title="Kaarka Aqoonsiga Qaranka Soomaaliyeed">
+                    <!-- Top Bar -->
+                    <div class="card-top">
+                        <div class="card-emblem-left">
+                            <img src="logo.png" alt="Emblem">
+                        </div>
+                        <div class="card-gov-title">
+                            <h4>Jamhuuriyadda Federaalka Soomaaliya</h4>
+                            <p>Federal Republic of Somalia &bull; National ID</p>
+                        </div>
+                        <div class="somali-flag-small" title="Calanka Soomaaliya">
+                            ★
+                        </div>
+                    </div>
+
+                    <!-- Main Section -->
+                    <div class="card-main">
+                        <!-- Left Avatar & Chip -->
+                        <div class="card-avatar">
+                            <div class="card-chip"></div>
+                            <i class="fas fa-user-tie" style="font-size: 38px; color: #0052cc;"></i>
+                        </div>
+
+                        <!-- Center Info -->
+                        <div class="card-details">
+                            <div class="card-field">
+                                <span class="lbl">Lambarka NIC / ID Number</span>
+                                <span class="val nic-mono">SOM-2026-89412</span>
+                            </div>
+                            <div class="card-field">
+                                <span class="lbl">Magaca Buuxa / Full Name</span>
+                                <span class="val">MAXAMED CALI AXMED</span>
+                            </div>
+                            <div class="card-details-row">
+                                <div class="card-field">
+                                    <span class="lbl">Jinsiga / Sex</span>
+                                    <span class="val">Lab (M)</span>
+                                </div>
+                                <div class="card-field">
+                                    <span class="lbl">Dhalashada / DOB</span>
+                                    <span class="val">12/04/1996</span>
+                                </div>
+                            </div>
+                            <div class="card-details-row">
+                                <div class="card-field">
+                                    <span class="lbl">Taariikhda Bixinta</span>
+                                    <span class="val">01/01/2026</span>
+                                </div>
+                                <div class="card-field">
+                                    <span class="lbl">Dhicitaanka / Expiry</span>
+                                    <span class="val">01/01/2036</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right QR & Hologram -->
+                        <div class="card-right-codes">
+                            <div class="qr-mock" title="QR Code">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div class="hologram-seal" title="Hologram Seal">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Barcode Strip -->
+                    <div class="card-bottom-strip">
+                        <span><i class="fas fa-barcode"></i> I<SOM89412<<49201<<<0101<<26</span>
+                        <span style="color:#0052cc; font-weight:700;"><i class="fas fa-shield-alt"></i> VERIFIED</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE SEARCH / VERIFICATION SECTION -->
+    <section class="section-verify" id="verify">
+        <div class="section-header">
+            <span class="section-subtitle"><i class="fas fa-search-plus"></i> Nidaamka Baarista</span>
+            <h2 class="section-title">Hubi Kaarkaaga Aqoonsiga Qaranka</h2>
+            <p class="section-desc">
+                Geli lambarkaaga NIC si aad u xaqiijiso sax ahaanshaha kaarka iyo in xogtaadu ku diiwaangashan tahay keydka rasmiga ah ee Qaranka Soomaaliyeed.
+            </p>
+        </div>
+
+        <div class="verify-box-wrapper">
+            <form id="verifyForm" class="verify-form" onsubmit="handleVerify(event)">
+                <div class="verify-input-wrap">
+                    <i class="fas fa-id-card"></i>
+                    <input type="text" id="nicNumberInput" class="verify-input" placeholder="Geli Lambarka NIC (tusaale: SOM-2025-001)" required autocomplete="off">
+                </div>
+                <button type="submit" class="btn-verify" id="verifyBtn">
+                    <i class="fas fa-check-double"></i> Xaqiiji Hadda
+                </button>
+            </form>
+
+            <div class="verify-hints">
+                <span><i class="fas fa-info-circle" style="color:var(--primary);"></i> Xogtu waa mid sir ah oo toos uga imanaysa xarunta xogta.</span>
+                <span id="sampleHint">Adeegso lambarkaaga saxda ah</span>
+            </div>
+
+            <!-- Dynamic Verification Result -->
+            <div id="verifyResult">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS COUNTER -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-num">500,000<span class="accent">+</span></div>
+                <div class="stat-lbl">Muwaadiniin Diiwaangashan</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">18<span class="accent">/18</span></div>
+                <div class="stat-lbl">Gobol oo Xarumo Ku Leh</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">100<span class="accent">%</span></div>
+                <div class="stat-lbl">Sugnaan & Amni Biometric ah</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">24<span class="accent">/7</span></div>
+                <div class="stat-lbl">Xaqiijin Dijitaal ah oo Fudud</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE FEATURES / SERVICES -->
+    <section class="section-features" id="services">
+        <div class="section-header">
+            <span class="section-subtitle"><i class="fas fa-stars"></i> Faa'iidooyinka</span>
+            <h2 class="section-title">Adeegyada & Faa'iidooyinka Kaarka</h2>
+            <p class="section-desc">Kaarka Aqoonsiga Qaranka Soomaaliyeed wuxuu xaqiijinayaa xuquuqdaada muwaadinnimo isagoo furaya dhammaan adeegyada dowladda iyo ganacsiga.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+                <h3 class="feature-title">Xogta Bayoolajiga (Biometrics)</h3>
+                <p class="feature-desc">Kaarku wuxuu ku qalabaysan yahay xogta faraha iyo wajiga oo ka hortagaysa in qof kale isticmaalo aqoonsigaaga.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <h3 class="feature-title">Xaqiijin Dagdag ah (QR Code)</h3>
+                <p class="feature-desc">Hay'adaha ammaanka, bangiyada, iyo xarumaha adeegga waxay ku xaqiijin karaan aqoonsiga hal ilbiriqsi gudahood.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3 class="feature-title">Adeegyada Bangiyada & Dowladda</h3>
+                <p class="feature-desc">Fududeynta furashada xisaabaadka bangiyada, qaadashada baasaboorka, iyo ka faa'iideysiga adeegyada bulshada.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fas fa-user-lock"></i>
+                </div>
+                <h3 class="feature-title">Ilaalinta Sirta Muwaadinka</h3>
+                <p class="feature-desc">Xogta muwaadinka waxaa lagu maamulaa nidaamka sir-furka ugu sareeya ee waafaqsan shuruucda caalamiga ah.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEPS TO GET CARD -->
+    <section class="section-steps" id="steps">
+        <div class="section-header">
+            <span class="section-subtitle"><i class="fas fa-route"></i> Tallaabooyinka</span>
+            <h2 class="section-title">Sida Loo Helo Kaarka Aqoonsiga Qaranka</h2>
+            <p class="section-desc">Qaadashada Kaarka Aqoonsiga Qaranka waa nidaam sahlan oo afar tallaabo ku qaadanaya.</p>
+        </div>
+
+        <div class="steps-wrapper">
+            <div class="step-item">
+                <div class="step-badge">1</div>
+                <h4>Diyaarinta Dukumiintiyada</h4>
+                <p>Soo qaado shahaadada dhalashada ama waraaqaha xaqiijinta muwaadinnimada.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-badge">2</div>
+                <h4>Booqo Xarunta NIC</h4>
+                <p>Tag xarunta ugu dhow ee diiwaangelinta aqoonsiga qaranka ee degmadaada.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-badge">3</div>
+                <h4>Diiwaangelinta Faraha & Sawirka</h4>
+                <p>Shaqaalaha diiwaangelinta ayaa qaadaya sawirkaaga iyo farahaaga.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-badge">4</div>
+                <h4>Daabacaadda & Qaadashada</h4>
+                <p>Kaarkaaga waxaa lagu daabacayaa qalab casri ah waxaana laguu soo gaarsiinayaa si degdeg ah.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-features" id="about" style="background:#ffffff;">
+        <div class="hero-container">
+            <div class="hero-visual">
+                <img src="logo.png" alt="Somalia National ID Badge" style="width: 320px; max-width: 100%; border-radius: 50%; box-shadow: var(--shadow-lg);">
+            </div>
+            <div class="hero-content">
+                <div class="badge-official">
+                    <i class="fas fa-landmark"></i> Ku Saabsan Nidaamka
+                </div>
+                <h2 class="hero-title" style="font-size: 36px;">Hey'adda Diiwaangelinta & Aqoonsiga Qaranka</h2>
+                <p class="hero-desc">
+                    Nidaamka Kaarka Aqoonsiga Qaranka Soomaaliyeed (NIC System) waa mashruuc qaran oo ujeedkiisu yahay in muwaaddin kasta oo Soomaali ah la siiyo aqoonsi sugan, casri ah, oo la aqoonsan yahay dalka gudihiisa iyo dibadiisaba.
+                </p>
+                <p class="hero-desc" style="margin-top: -15px;">
+                    Aqoonsigani waa laf-dhabarta dimoqraadiyadda, amniga qaran, iyo maamul wanaagga dijitaalka ah ee Jamhuuriyadda Federaalka Soomaaliya.
+                </p>
+                <div style="margin-top: 20px;">
+                    <a href="#verify" class="btn-hero-primary"><i class="fas fa-search"></i> Hubi Xogtaada Hadda</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section-faq" id="faq">
+        <div class="section-header">
+            <span class="section-subtitle"><i class="fas fa-question-circle"></i> Su'aalaha</span>
+            <h2 class="section-title">Su'aalaha Badanaa La Isweydiiyo</h2>
+            <p class="section-desc">Halkan ka hel jawaabaha su'aalaha ugu muhiimsan ee la xiriira qaadashada iyo isticmaalka kaarka.</p>
+        </div>
+
+        <div class="faq-wrapper">
+            <div class="faq-item active">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Yaa xaq u leh inuu qaato Kaarka Aqoonsiga Qaranka?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Muwaaddin kasta oo u dhashay Jamhuuriyadda Federaalka Soomaaliya oo da'diisu tahay 18 sano ama ka weyn wuxuu xaq u leeyahay inuu helo Kaarka Aqoonsiga Qaranka.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Kaarku muddo intee le'eg ayuu shaqeynayaa?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Kaarka Aqoonsiga Qaranka wuxuu shaqeynayaa muddo 10 sano ah laga bilaabo maalinta la bixiyo. Kadib muddadaas wuu dhacayaa waana la cusbooneysiinayaa.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Sideen ku xaqiijin karaa haddii kaarkaygu ansax yahay?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Waxaad isticmaali kartaa qeybta "Hubi Kaarkaaga" ee ku taal boggan adigoo gelinaya lambarkaaga NIC, ama adigoo scan ku sameynaya QR Code-ka ku yaal dhabarka kaarka.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Haddii kaarku iga lumo sideen ku heli karaa mid kale?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Fadlan si degdeg ah ugu wargeli xafiiska booliska ugu dhow si aad u hesho warqad caddeyn lumin ah, kadibna booqo xarunta NIC si laguu siiyo kaar cusub oo badal ah.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADMIN CTA BANNER -->
+    <div class="cta-banner">
+        <div class="cta-banner-inner">
+            <div class="cta-text">
+                <h3>Xafiiska Maamulka & Diiwaangelinta</h3>
+                <p>Maamulayaasha xarumaha NIC waxay toos u gali karaan qeybta maamulka si ay u diiwaangeliyaan ama u daabacaan kaararka cusub.</p>
+            </div>
+            <a href="login.php" class="btn-cta-admin">
+                <i class="fas fa-sign-in-alt"></i> Gal Qeybta Maamulka (Login)
+            </a>
+        </div>
+    </div>
+
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="f-brand-top">
+                    <div class="f-logo">
+                        <img src="logo.png" alt="NIC Logo">
+                    </div>
+                    <h4>Jamhuuriyadda Federaalka Soomaaliya</h4>
+                </div>
+                <p>
+                    Hey'adda Aqoonsiga iyo Diiwaangelinta Qaranka Soomaaliyeed (NIC). Xaqiijinta aqoonsiga muwaadinka, horumarinta maamul-wanaagga, iyo dhisidda bulsho dijitaal ah.
+                </p>
+                <div style="display:flex; gap:12px; margin-top:6px;">
+                    <span style="color:#38bdf8;"><i class="fab fa-twitter"></i> @NIC_Somalia</span>
+                    <span style="color:#38bdf8;"><i class="fab fa-facebook"></i> NIC Somalia</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h5>Bogagga Muhiimka ah</h5>
+                <ul class="footer-links">
+                    <li><a href="#hero">Hoyga</a></li>
+                    <li><a href="#about">Ku Saabsan NIC</a></li>
+                    <li><a href="#services">Adeegyada Qaranka</a></li>
+                    <li><a href="#verify">Hubinta Kaarka</a></li>
+                    <li><a href="login.php">Admin Login</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Xarumaha & Adeegga</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Xarunta Muqdisho</a></li>
+                    <li><a href="#">Laamaha Gobollada</a></li>
+                    <li><a href="#">Shuruucda Aqoonsiga</a></li>
+                    <li><a href="#">Xogta Amniga & Sirta</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>La Xiriir Xafiiska</h5>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Wadada Makka Al-Mukarrama, Muqdisho</li>
+                    <li><i class="fas fa-phone"></i> Qadka Degdegga: 1024</li>
+                    <li><i class="fas fa-envelope"></i> contact@nic.gov.so</li>
+                    <li><i class="fas fa-clock"></i> Sabti - Khamiis: 8:00 AM - 4:00 PM</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copy-text">
+                &copy; 2026 <span>NIC System</span> &bull; Jamhuuriyadda Federaalka Soomaaliya. Dhammaan xuquuqda way dhowran yihiin.
+            </div>
+            <div>
+                <a href="login.php" style="color:#64748b; text-decoration:none; font-size:12px;">
+                    <i class="fas fa-lock"></i> Nidaamka Maamulka Rasmiga ah
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Toggle FAQs
+        function toggleFaq(el) {
+            const parent = el.closest('.faq-item');
+            const isActive = parent.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+            
+            if (!isActive) {
+                parent.classList.add('active');
+            }
+        }
+
+        // Live Verification Handler via check_nic.php
+        async function handleVerify(e) {
+            e.preventDefault();
+            const input = document.getElementById('nicNumberInput');
+            const btn   = document.getElementById('verifyBtn');
+            const resBox = document.getElementById('verifyResult');
+            const nic   = input.value.trim();
+
+            if (!nic) return;
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Baaraya...';
+            resBox.style.display = 'block';
+            resBox.innerHTML = `
+                <div style="text-align:center; padding: 25px; color:#64748b;">
+                    <i class="fas fa-circle-notch fa-spin" style="font-size:32px; color:var(--primary); margin-bottom:10px;"></i>
+                    <p>Waxaa la baarayaa diiwaanka qaranka...</p>
+                </div>
+            `;
+
+            try {
+                const formData = new FormData();
+                formData.append('nic_number', nic);
+
+                const response = await fetch('check_nic.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.status && data.data) {
+                    const user = data.data;
+                    const photoHtml = user.photo_path 
+                        ? `<img src="${user.photo_path}" alt="${user.full_name}" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\\'fas fa-user\\' style=\\'font-size:45px; color:#94a3b8;\\'></i>';">`
+                        : `<i class="fas fa-user" style="font-size:45px; color:#94a3b8;"></i>`;
+
+                    resBox.innerHTML = `
+                        <div class="result-card-verified">
+                            <div class="res-top">
+                                <div class="verified-badge-pill">
+                                    <i class="fas fa-check-circle"></i> KAARKU WAA ANSAX (VERIFIED RECORD)
+                                </div>
+                                <span style="font-size:12px; color:#64748b;"><i class="fas fa-shield-alt"></i> Nidaamka Aqoonsiga Qaranka</span>
+                            </div>
+                            <div class="res-grid">
+                                <div class="res-photo">
+                                    ${photoHtml}
+                                </div>
+                                <div class="res-details">
+                                    <div class="res-field">
+                                        <label>Lambarka Aqoonsiga (NIC)</label>
+                                        <p style="color:#0052cc; font-family:'JetBrains Mono', monospace;">${user.nic_number}</p>
+                                    </div>
+                                    <div class="res-field">
+                                        <label>Magaca Buuxa</label>
+                                        <p>${user.full_name}</p>
+                                    </div>
+                                    <div class="res-field">
+                                        <label>Taariikhda Dhalashada</label>
+                                        <p>${user.dob || 'Lama shaacin'}</p>
+                                    </div>
+                                    <div class="res-field">
+                                        <label>Jinsiga</label>
+                                        <p>${user.gender || 'Lama shaacin'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    resBox.innerHTML = `
+                        <div class="result-card-notfound">
+                            <i class="fas fa-exclamation-triangle" style="font-size:36px; margin-bottom:12px;"></i>
+                            <h4 style="font-size:18px; margin-bottom:6px; font-weight:800;">Lama Helin Kaarkan</h4>
+                            <p style="font-size:14px;">
+                                Lambarka <strong>${escapeHtml(nic)}</strong> kuma jiro diiwaanka rasmiga ah ee qaranka ama weli lama ansixin. Fadlan hubi lambarka aad gelisay ama la xiriir xafiiska NIC.
+                            </p>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                resBox.innerHTML = `
+                    <div class="result-card-notfound">
+                        <i class="fas fa-wifi" style="font-size:36px; margin-bottom:12px;"></i>
+                        <h4 style="font-size:18px; margin-bottom:6px; font-weight:800;">Cilad ayaa dhacday</h4>
+                        <p style="font-size:14px;">Lama xiriiri karin server-ka. Fadlan hubi khadkaaga internet-ka ama mar kale isku day.</p>
+                    </div>
+                `;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check-double"></i> Xaqiiji Hadda';
+            }
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // 3D Card tilt effect on mouse movement
+        const card = document.getElementById('nationalIdCard');
+        if (card && window.innerWidth > 992) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const tiltX = (y / rect.height) * -14;
+                const tiltY = (x / rect.width) * 14;
+                card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        }
+    </script>
+</body>
+</html>
